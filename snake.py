@@ -1,10 +1,13 @@
 from turtle import Turtle
-STARTING_POSITIONS = [(0,0),(-20,0),(-40,0)]
+
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+
+
 class Snake:
 
     def __init__(self):
@@ -12,11 +15,9 @@ class Snake:
         self.createsnake()
         self.head = self.segments[0]
 
-
     def createsnake(self):
         for position in STARTING_POSITIONS:
             self.add_segment(position)
-
 
     def add_segment(self, position):
         newsegment = Turtle("square")
@@ -24,6 +25,13 @@ class Snake:
         newsegment.penup()
         newsegment.goto(position)
         self.segments.append(newsegment)
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.createsnake()
+        self.head = self.segments[0]
 
     def extend(self):
         self.add_segment(self.segments[-1].position())
